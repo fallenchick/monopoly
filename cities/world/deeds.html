@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>世界城市版地契卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            padding: 30px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .deeds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 地契卡片样式 */
+        .deed-card {
+            width: 220px;
+            background: #fffef5;
+            border: 3px solid #333;
+            border-radius: 8px;
+            font-family: 'Times New Roman', 'SimSun', serif;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        
+        .deed-header {
+            padding: 12px 10px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .deed-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .deed-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .deed-body {
+            padding: 12px 15px;
+            color: #333;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        
+        .deed-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .deed-divider {
+            border-top: 1px solid #999;
+            margin: 8px 0;
+        }
+        
+        .deed-section-title {
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        
+        .deed-footer {
+            text-align: center;
+            padding: 10px;
+            background: #f5f5dc;
+            border-top: 1px solid #ccc;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .deed-icon {
+            font-size: 40px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* 颜色 */
+        .brown { background: #8B4513; }
+        .lightblue { background: #5bc0de; }
+        .pink { background: #d63384; }
+        .orange { background: #fd7e14; }
+        .red { background: #dc3545; }
+        .yellow { background: #ffc107; color: #333; text-shadow: none; }
+        .green { background: #198754; }
+        .blue { background: #0d6efd; }
+        .railroad { background: #333; }
+        .utility { background: #555; }
+
+        .section-title {
+            color: #fff;
+            font-size: 20px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌍 大富翁世界城市版 - 地契卡片</h1>
+    
+    <h2 class="section-title">🟤 非洲 - 棕色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header brown"><div class="deed-title">地 契</div><div class="deed-name">拉各斯</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$2</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$10</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$30</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$90</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$160</span></div>
+                <div class="deed-row"><span>酒店</span><span>$250</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$30</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$60</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header brown"><div class="deed-title">地 契</div><div class="deed-name">开罗</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$4</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$20</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$60</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$180</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$320</span></div>
+                <div class="deed-row"><span>酒店</span><span>$450</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$30</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$60</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🩵 南亚 - 浅蓝组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">拉合尔</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$6</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$30</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$90</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$270</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$400</span></div>
+                <div class="deed-row"><span>酒店</span><span>$550</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$50</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$100</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">新德里</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$6</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$30</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$90</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$270</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$400</span></div>
+                <div class="deed-row"><span>酒店</span><span>$550</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$50</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$100</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">孟买</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$8</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$40</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$100</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$300</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$450</span></div>
+                <div class="deed-row"><span>酒店</span><span>$600</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$60</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$120</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🩷 拉丁美洲 - 粉色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header pink"><div class="deed-title">地 契</div><div class="deed-name">波哥大</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$10</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$50</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$150</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$450</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$625</span></div>
+                <div class="deed-row"><span>酒店</span><span>$750</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$70</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$140</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header pink"><div class="deed-title">地 契</div><div class="deed-name">墨西哥城</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$10</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$50</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$150</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$450</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$625</span></div>
+                <div class="deed-row"><span>酒店</span><span>$750</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$70</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$140</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header pink"><div class="deed-title">地 契</div><div class="deed-name">圣保罗</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$12</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$60</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$180</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$500</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$700</span></div>
+                <div class="deed-row"><span>酒店</span><span>$900</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$80</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$160</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🟠 欧洲（东/中）- 橙色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header orange"><div class="deed-title">地 契</div><div class="deed-name">华沙</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$14</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$70</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$200</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$550</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$750</span></div>
+                <div class="deed-row"><span>酒店</span><span>$950</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$90</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$180</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header orange"><div class="deed-title">地 契</div><div class="deed-name">柏林</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$14</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$70</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$200</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$550</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$750</span></div>
+                <div class="deed-row"><span>酒店</span><span>$950</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$90</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$180</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header orange"><div class="deed-title">地 契</div><div class="deed-name">罗马</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$16</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$80</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$220</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$600</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$800</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1000</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$100</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$100</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$200</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🔴 亚太 - 红色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header red"><div class="deed-title">地 契</div><div class="deed-name">悉尼</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$18</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$90</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$250</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$700</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$875</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1050</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$110</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$220</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header red"><div class="deed-title">地 契</div><div class="deed-name">新加坡</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$18</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$90</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$250</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$700</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$875</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1050</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$110</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$220</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header red"><div class="deed-title">地 契</div><div class="deed-name">香港</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$20</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$100</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$300</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$750</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$925</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1100</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$120</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$240</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🟡 东亚 - 黄色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header yellow"><div class="deed-title">地 契</div><div class="deed-name">首尔</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$22</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$110</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$330</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$800</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$975</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1150</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$130</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$260</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header yellow"><div class="deed-title">地 契</div><div class="deed-name">上海</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$22</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$110</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$330</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$800</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$975</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1150</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$130</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$260</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header yellow"><div class="deed-title">地 契</div><div class="deed-name">东京</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$24</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$120</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$360</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$850</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1025</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$150</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$140</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$280</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🟢 欧洲（西）- 绿色组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header green"><div class="deed-title">地 契</div><div class="deed-name">苏黎世</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$26</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$130</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$390</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$900</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1100</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1275</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$150</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$300</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header green"><div class="deed-title">地 契</div><div class="deed-name">巴黎</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$26</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$130</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$390</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$900</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1100</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1275</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$150</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$300</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header green"><div class="deed-title">地 契</div><div class="deed-name">伦敦</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$28</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$150</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$450</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$1000</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1200</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1400</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$160</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$320</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🔵 北美 - 深蓝组</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header blue"><div class="deed-title">地 契</div><div class="deed-name">多伦多</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$35</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$175</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$500</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$1100</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1300</span></div>
+                <div class="deed-row"><span>酒店</span><span>$1500</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$175</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$350</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header blue"><div class="deed-title">地 契</div><div class="deed-name">纽约</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>$50</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>$200</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>$600</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>$1400</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>$1700</span></div>
+                <div class="deed-row"><span>酒店</span><span>$2000</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>$200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>$200</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">$400</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">✈️ 国际机场</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">国际枢纽</div><div class="deed-name">多哈机场</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">✈️</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>$25</span></div>
+                <div class="deed-row"><span>拥有2个机场</span><span>$50</span></div>
+                <div class="deed-row"><span>拥有3个机场</span><span>$100</span></div>
+                <div class="deed-row"><span>拥有4个机场</span><span>$200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$100</span></div>
+            </div>
+            <div class="deed-footer">$200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">国际枢纽</div><div class="deed-name">法兰克福机场</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">✈️</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>$25</span></div>
+                <div class="deed-row"><span>拥有2个机场</span><span>$50</span></div>
+                <div class="deed-row"><span>拥有3个机场</span><span>$100</span></div>
+                <div class="deed-row"><span>拥有4个机场</span><span>$200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$100</span></div>
+            </div>
+            <div class="deed-footer">$200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">国际枢纽</div><div class="deed-name">广州机场</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">✈️</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>$25</span></div>
+                <div class="deed-row"><span>拥有2个机场</span><span>$50</span></div>
+                <div class="deed-row"><span>拥有3个机场</span><span>$100</span></div>
+                <div class="deed-row"><span>拥有4个机场</span><span>$200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$100</span></div>
+            </div>
+            <div class="deed-footer">$200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">国际枢纽</div><div class="deed-name">亚特兰大机场</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">✈️</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>$25</span></div>
+                <div class="deed-row"><span>拥有2个机场</span><span>$50</span></div>
+                <div class="deed-row"><span>拥有3个机场</span><span>$100</span></div>
+                <div class="deed-row"><span>拥有4个机场</span><span>$200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$100</span></div>
+            </div>
+            <div class="deed-footer">$200</div>
+        </div>
+    </div>
+    
+    <h2 class="section-title">🏛️ 国际组织</h2>
+    <div class="deeds-grid">
+        <div class="deed-card">
+            <div class="deed-header utility"><div class="deed-title">国际机构</div><div class="deed-name">世界银行</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">🏦</div>
+                <div class="deed-divider"></div>
+                <div style="text-align:center;font-size:10px;line-height:1.6">
+                    拥有1个机构：<br>租金 = 骰子点数 × 4<br><br>
+                    拥有2个机构：<br>租金 = 骰子点数 × 10
+                </div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$75</span></div>
+            </div>
+            <div class="deed-footer">$150</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header utility"><div class="deed-title">国际机构</div><div class="deed-name">联合国</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">🌐</div>
+                <div class="deed-divider"></div>
+                <div style="text-align:center;font-size:10px;line-height:1.6">
+                    拥有1个机构：<br>租金 = 骰子点数 × 4<br><br>
+                    拥有2个机构：<br>租金 = 骰子点数 × 10
+                </div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>$75</span></div>
+            </div>
+            <div class="deed-footer">$150</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>上海版地契卡片</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: #1a1a2e;
+            padding: 30px;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .deeds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* 地契卡片样式 */
+        .deed-card {
+            width: 220px;
+            background: #fffef5;
+            border: 3px solid #333;
+            border-radius: 8px;
+            font-family: 'Times New Roman', 'SimSun', serif;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        
+        .deed-header {
+            padding: 12px 10px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .deed-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .deed-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .deed-body {
+            padding: 12px 15px;
+            color: #333;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+        
+        .deed-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .deed-divider {
+            border-top: 1px solid #999;
+            margin: 8px 0;
+        }
+        
+        .deed-section-title {
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        
+        .deed-footer {
+            text-align: center;
+            padding: 10px;
+            background: #f5f5dc;
+            border-top: 1px solid #ccc;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .deed-icon {
+            font-size: 40px;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        /* 颜色 */
+        .brown { background: #8B4513; }
+        .lightblue { background: #5bc0de; }
+        .pink { background: #d63384; }
+        .orange { background: #fd7e14; }
+        .red { background: #dc3545; }
+        .yellow { background: #ffc107; color: #333; text-shadow: none; }
+        .green { background: #198754; }
+        .blue { background: #0d6efd; }
+        .railroad { background: #333; }
+        .utility { background: #555; }
+    </style>
+</head>
+<body>
+    <h1>🏙️ 大富翁上海版 - 地契卡片</h1>
+    
+    <div class="deeds-grid">
+        <!-- 棕色组 -->
+        <div class="deed-card">
+            <div class="deed-header brown"><div class="deed-title">地 契</div><div class="deed-name">宝山路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥2</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥10</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥30</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥90</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥160</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥250</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥30</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥60</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header brown"><div class="deed-title">地 契</div><div class="deed-name">共和新路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥4</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥20</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥60</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥180</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥320</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥450</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥30</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥60</div>
+        </div>
+        
+        <!-- 浅蓝组 -->
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">四平路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥6</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥30</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥90</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥270</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥400</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥550</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥50</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥100</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">中山北路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥6</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥30</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥90</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥270</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥400</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥550</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥50</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥100</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header lightblue"><div class="deed-title">地 契</div><div class="deed-name">江浦路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥8</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥40</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥100</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥300</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥450</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥600</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥50</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥60</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥120</div>
+        </div>
+        
+        <!-- 铁路 -->
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">交通枢纽</div><div class="deed-name">上海站</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">🚄</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>¥25</span></div>
+                <div class="deed-row"><span>拥有2个车站</span><span>¥50</span></div>
+                <div class="deed-row"><span>拥有3个车站</span><span>¥100</span></div>
+                <div class="deed-row"><span>拥有4个车站</span><span>¥200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥100</span></div>
+            </div>
+            <div class="deed-footer">¥200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">交通枢纽</div><div class="deed-name">上海南站</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">🚄</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>¥25</span></div>
+                <div class="deed-row"><span>拥有2个车站</span><span>¥50</span></div>
+                <div class="deed-row"><span>拥有3个车站</span><span>¥100</span></div>
+                <div class="deed-row"><span>拥有4个车站</span><span>¥200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥100</span></div>
+            </div>
+            <div class="deed-footer">¥200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">交通枢纽</div><div class="deed-name">虹桥站</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">🚄</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>¥25</span></div>
+                <div class="deed-row"><span>拥有2个车站</span><span>¥50</span></div>
+                <div class="deed-row"><span>拥有3个车站</span><span>¥100</span></div>
+                <div class="deed-row"><span>拥有4个车站</span><span>¥200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥100</span></div>
+            </div>
+            <div class="deed-footer">¥200</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header railroad"><div class="deed-title">交通枢纽</div><div class="deed-name">浦东机场</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">✈️</div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>租金</span><span>¥25</span></div>
+                <div class="deed-row"><span>拥有2个车站</span><span>¥50</span></div>
+                <div class="deed-row"><span>拥有3个车站</span><span>¥100</span></div>
+                <div class="deed-row"><span>拥有4个车站</span><span>¥200</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥100</span></div>
+            </div>
+            <div class="deed-footer">¥200</div>
+        </div>
+        
+        <!-- 公用事业 -->
+        <div class="deed-card">
+            <div class="deed-header utility"><div class="deed-title">公用事业</div><div class="deed-name">电力公司</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">💡</div>
+                <div class="deed-divider"></div>
+                <div style="text-align:center;font-size:10px;line-height:1.6">
+                    拥有1个公用事业：<br>租金 = 骰子点数 × 4<br><br>
+                    拥有2个公用事业：<br>租金 = 骰子点数 × 10
+                </div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥75</span></div>
+            </div>
+            <div class="deed-footer">¥150</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header utility"><div class="deed-title">公用事业</div><div class="deed-name">自来水公司</div></div>
+            <div class="deed-body">
+                <div class="deed-icon">💧</div>
+                <div class="deed-divider"></div>
+                <div style="text-align:center;font-size:10px;line-height:1.6">
+                    拥有1个公用事业：<br>租金 = 骰子点数 × 4<br><br>
+                    拥有2个公用事业：<br>租金 = 骰子点数 × 10
+                </div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥75</span></div>
+            </div>
+            <div class="deed-footer">¥150</div>
+        </div>
+        
+        <!-- 深蓝组（最贵） -->
+        <div class="deed-card">
+            <div class="deed-header blue"><div class="deed-title">地 契</div><div class="deed-name">南京西路</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥35</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥175</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥500</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥1100</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥1300</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥1500</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥175</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥350</div>
+        </div>
+        
+        <div class="deed-card">
+            <div class="deed-header blue"><div class="deed-title">地 契</div><div class="deed-name">陆家嘴</div></div>
+            <div class="deed-body">
+                <div class="deed-row"><span>租金</span><span>¥50</span></div>
+                <div class="deed-row"><span>一栋房屋</span><span>¥200</span></div>
+                <div class="deed-row"><span>二栋房屋</span><span>¥600</span></div>
+                <div class="deed-row"><span>三栋房屋</span><span>¥1400</span></div>
+                <div class="deed-row"><span>四栋房屋</span><span>¥1700</span></div>
+                <div class="deed-row"><span>酒店</span><span>¥2000</span></div>
+                <div class="deed-divider"></div>
+                <div class="deed-row"><span>建房费用</span><span>¥200</span></div>
+                <div class="deed-row"><span>抵押价值</span><span>¥200</span></div>
+                <div class="deed-section-title">拥有全部同色地产<br>租金翻倍</div>
+            </div>
+            <div class="deed-footer">¥400</div>
+        </div>
+    </div>
+</body>
+</html>

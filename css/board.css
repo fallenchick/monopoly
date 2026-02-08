@@ -1,0 +1,286 @@
+/* board.css - 棋盘样式 */
+
+#board-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+}
+
+#board {
+    position: relative;
+    width: min(75vh, 75vw);
+    height: min(75vh, 75vw);
+}
+
+/* ===== 自绘棋盘 ===== */
+#board-grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 12% repeat(9, 1fr) 12%;
+    grid-template-rows: 12% repeat(9, 1fr) 12%;
+    background: #c8e6c9;
+    border: 3px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.tile {
+    border: 1.5px solid #333;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.tile-name {
+    font-size: clamp(6px, 1vmin, 9px);
+    font-weight: bold;
+    text-align: center;
+    padding: 1px;
+    line-height: 1.2;
+    color: #333;
+}
+
+.tile-price {
+    font-size: clamp(5px, 0.9vmin, 8px);
+    color: #666;
+    margin-top: 1px;
+}
+
+/* 四个角落 */
+.corner {
+    font-size: clamp(8px, 1.2vmin, 11px);
+    font-weight: bold;
+}
+.corner-go { 
+    grid-area: 11 / 11; 
+    background: #ffebee;
+}
+.corner-go .arrow {
+    font-size: clamp(12px, 2vmin, 20px);
+    color: #d32f2f;
+    font-weight: bold;
+}
+.corner-jail { 
+    grid-area: 11 / 1; 
+    background: #fff3e0;
+}
+.corner-parking { 
+    grid-area: 1 / 1; 
+    background: #e8f5e9;
+}
+.corner-gotojail { 
+    grid-area: 1 / 11; 
+    background: #ffcdd2;
+}
+
+/* 边的格子 */
+.bottom { grid-row: 11; }
+.bottom .color-bar { bottom: 0; width: 100%; height: 18%; }
+.bottom .tile-name { margin-bottom: 18%; }
+
+.left { grid-column: 1; }
+.left .color-bar { left: 0; height: 100%; width: 18%; }
+.left .tile-content { margin-left: 18%; }
+
+.top { grid-row: 1; }
+.top .color-bar { top: 0; width: 100%; height: 18%; }
+.top .tile-name { margin-top: 18%; }
+
+.right { grid-column: 11; }
+.right .color-bar { right: 0; height: 100%; width: 18%; }
+.right .tile-content { margin-right: 18%; }
+
+/* 颜色条 */
+.color-bar {
+    position: absolute;
+}
+
+/* 地产颜色组 */
+.brown { background: #8B4513; }
+.lightblue { background: #87CEEB; }
+.pink { background: #FF69B4; }
+.orange { background: #FFA500; }
+.red { background: #FF0000; }
+.yellow { background: #FFFF00; }
+.green { background: #228B22; }
+.blue { background: #0000CD; }
+
+/* 特殊格子 */
+.railroad { background: #f5f5f5; }
+.utility { background: #f5f5f5; }
+.tax { background: #ffe0b2; }
+.chance { background: #ffecb3; }
+.chest { background: #e3f2fd; }
+
+.special-icon {
+    font-size: clamp(12px, 2vmin, 18px);
+    margin-bottom: 2px;
+}
+
+/* 中央区域 */
+.board-center {
+    grid-area: 2 / 2 / 11 / 11;
+    background: #c8e6c9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.center-logo {
+    font-size: clamp(24px, 5vmin, 50px);
+    font-weight: bold;
+    color: #d32f2f;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.center-subtitle {
+    font-size: clamp(12px, 2.5vmin, 22px);
+    color: #333;
+    margin-top: 8px;
+    font-family: serif;
+}
+
+.center-city {
+    font-size: clamp(10px, 1.8vmin, 16px);
+    color: #666;
+    margin-top: 8px;
+}
+
+/* ===== 棋子层 ===== */
+#tokens-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.token {
+    position: absolute;
+    width: clamp(20px, 4vmin, 35px);
+    height: clamp(20px, 4vmin, 35px);
+    transition: all 0.4s ease-out;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5));
+    z-index: 10;
+}
+
+.token img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.token.moving {
+    transform: scale(1.2);
+}
+
+/* ===== 房屋标记层 ===== */
+#houses-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.house-marker {
+    position: absolute;
+    font-size: clamp(8px, 1.5vmin, 14px);
+    z-index: 5;
+}
+
+.ownership-marker {
+    position: absolute;
+    width: clamp(6px, 1.2vmin, 12px);
+    height: clamp(6px, 1.2vmin, 12px);
+    border-radius: 50%;
+    border: 2px solid white;
+    z-index: 4;
+}
+
+.mortgage-marker {
+    position: absolute;
+    font-size: clamp(8px, 1.2vmin, 12px);
+    z-index: 6;
+}
+
+/* ===== 中央信息区 ===== */
+#center-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 15px;
+    min-width: 150px;
+    background: rgba(200, 230, 201, 0.95);
+    border-radius: 10px;
+}
+
+#current-turn {
+    font-size: clamp(12px, 2vmin, 18px);
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+}
+
+#dice-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.die {
+    width: clamp(35px, 6vmin, 50px);
+    height: clamp(35px, 6vmin, 50px);
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(24px, 4vmin, 35px);
+    color: #e74c3c;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#message {
+    font-size: clamp(10px, 1.5vmin, 14px);
+    color: #333;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+    #board {
+        width: min(55vh, 90vw);
+        height: min(55vh, 90vw);
+    }
+}
+
+@media (max-width: 600px) {
+    #board {
+        width: min(48vh, 95vw);
+        height: min(48vh, 95vw);
+    }
+    
+    #center-info {
+        display: none;
+    }
+}

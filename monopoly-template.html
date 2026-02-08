@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>大富翁棋盘模板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a2e;
+            padding: 20px;
+        }
+        
+        .board {
+            width: 900px;
+            height: 900px;
+            display: grid;
+            grid-template-columns: 110px repeat(9, 1fr) 110px;
+            grid-template-rows: 110px repeat(9, 1fr) 110px;
+            background: #c8e6c9;
+            border: 4px solid #333;
+        }
+        
+        .tile {
+            border: 2px solid #333;
+            background: #fff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .tile-name {
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            padding: 2px;
+            line-height: 1.2;
+            color: #333;
+        }
+        
+        .tile-price {
+            font-size: 9px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        /* 四个角落 */
+        .corner {
+            width: 110px;
+            height: 110px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .corner-go { grid-area: 11 / 11; background: #ffebee; }
+        .corner-jail { grid-area: 11 / 1; background: #fff3e0; }
+        .corner-parking { grid-area: 1 / 1; background: #e8f5e9; }
+        .corner-gotojail { grid-area: 1 / 11; background: #ffcdd2; }
+        
+        /* 边的格子 */
+        .bottom { grid-row: 11; }
+        .bottom .color-bar { bottom: 0; width: 100%; height: 18px; }
+        .bottom .tile-name { margin-bottom: 20px; }
+        
+        .left { grid-column: 1; }
+        .left .color-bar { left: 0; height: 100%; width: 18px; }
+        
+        .top { grid-row: 1; }
+        .top .color-bar { top: 0; width: 100%; height: 18px; }
+        .top .tile-name { margin-top: 20px; }
+        
+        .right { grid-column: 11; }
+        .right .color-bar { right: 0; height: 100%; width: 18px; }
+        
+        .color-bar { position: absolute; }
+        
+        /* 地产颜色 */
+        .brown { background: #8B4513; }
+        .lightblue { background: #87CEEB; }
+        .pink { background: #FF69B4; }
+        .orange { background: #FFA500; }
+        .red { background: #FF0000; }
+        .yellow { background: #FFFF00; }
+        .green { background: #228B22; }
+        .blue { background: #0000CD; }
+        
+        /* 特殊格子 */
+        .railroad { background: #f5f5f5; }
+        .utility { background: #f5f5f5; }
+        .tax { background: #ffe0b2; }
+        .chance { background: #ffecb3; }
+        .chest { background: #e3f2fd; }
+        
+        .special-icon { font-size: 20px; margin-bottom: 3px; }
+        
+        /* 中央 */
+        .center {
+            grid-area: 2 / 2 / 11 / 11;
+            background: #c8e6c9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: none;
+        }
+        .center-logo {
+            font-size: 60px;
+            font-weight: bold;
+            color: #d32f2f;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 5px;
+        }
+        .center-subtitle {
+            font-size: 24px;
+            color: #333;
+            margin-top: 10px;
+            font-family: serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+        <!-- 四个角落 -->
+        <div class="tile corner corner-parking"><div class="tile-name"></div></div>
+        <div class="tile corner corner-gotojail"><div class="tile-name"></div></div>
+        <div class="tile corner corner-jail"><div class="tile-name"></div></div>
+        <div class="tile corner corner-go"><div class="tile-name"></div></div>
+        
+        <!-- 顶边 (9格) -->
+        <div class="tile top" style="grid-column:2"><div class="color-bar red"></div><div class="tile-name"></div></div>
+        <div class="tile top chance" style="grid-column:3"><div class="tile-name"></div></div>
+        <div class="tile top" style="grid-column:4"><div class="color-bar red"></div><div class="tile-name"></div></div>
+        <div class="tile top" style="grid-column:5"><div class="color-bar red"></div><div class="tile-name"></div></div>
+        <div class="tile top railroad" style="grid-column:6"><div class="tile-name"></div></div>
+        <div class="tile top" style="grid-column:7"><div class="color-bar yellow"></div><div class="tile-name"></div></div>
+        <div class="tile top" style="grid-column:8"><div class="color-bar yellow"></div><div class="tile-name"></div></div>
+        <div class="tile top utility" style="grid-column:9"><div class="tile-name"></div></div>
+        <div class="tile top" style="grid-column:10"><div class="color-bar yellow"></div><div class="tile-name"></div></div>
+        
+        <!-- 右边 (9格) -->
+        <div class="tile right" style="grid-row:2"><div class="color-bar green"></div><div class="tile-name"></div></div>
+        <div class="tile right" style="grid-row:3"><div class="color-bar green"></div><div class="tile-name"></div></div>
+        <div class="tile right chest" style="grid-row:4"><div class="tile-name"></div></div>
+        <div class="tile right" style="grid-row:5"><div class="color-bar green"></div><div class="tile-name"></div></div>
+        <div class="tile right railroad" style="grid-row:6"><div class="tile-name"></div></div>
+        <div class="tile right chance" style="grid-row:7"><div class="tile-name"></div></div>
+        <div class="tile right" style="grid-row:8"><div class="color-bar blue"></div><div class="tile-name"></div></div>
+        <div class="tile right tax" style="grid-row:9"><div class="tile-name"></div></div>
+        <div class="tile right" style="grid-row:10"><div class="color-bar blue"></div><div class="tile-name"></div></div>
+        
+        <!-- 底边 (9格) -->
+        <div class="tile bottom" style="grid-column:10"><div class="tile-name"></div><div class="color-bar brown"></div></div>
+        <div class="tile bottom chest" style="grid-column:9"><div class="tile-name"></div></div>
+        <div class="tile bottom" style="grid-column:8"><div class="tile-name"></div><div class="color-bar brown"></div></div>
+        <div class="tile bottom tax" style="grid-column:7"><div class="tile-name"></div></div>
+        <div class="tile bottom railroad" style="grid-column:6"><div class="tile-name"></div></div>
+        <div class="tile bottom" style="grid-column:5"><div class="tile-name"></div><div class="color-bar lightblue"></div></div>
+        <div class="tile bottom chance" style="grid-column:4"><div class="tile-name"></div></div>
+        <div class="tile bottom" style="grid-column:3"><div class="tile-name"></div><div class="color-bar lightblue"></div></div>
+        <div class="tile bottom" style="grid-column:2"><div class="tile-name"></div><div class="color-bar lightblue"></div></div>
+        
+        <!-- 左边 (9格) -->
+        <div class="tile left" style="grid-row:10"><div class="color-bar pink"></div><div class="tile-name"></div></div>
+        <div class="tile left utility" style="grid-row:9"><div class="tile-name"></div></div>
+        <div class="tile left" style="grid-row:8"><div class="color-bar pink"></div><div class="tile-name"></div></div>
+        <div class="tile left" style="grid-row:7"><div class="color-bar pink"></div><div class="tile-name"></div></div>
+        <div class="tile left railroad" style="grid-row:6"><div class="tile-name"></div></div>
+        <div class="tile left" style="grid-row:5"><div class="color-bar orange"></div><div class="tile-name"></div></div>
+        <div class="tile left chest" style="grid-row:4"><div class="tile-name"></div></div>
+        <div class="tile left" style="grid-row:3"><div class="color-bar orange"></div><div class="tile-name"></div></div>
+        <div class="tile left" style="grid-row:2"><div class="color-bar orange"></div><div class="tile-name"></div></div>
+        
+        <!-- 中央 -->
+        <div class="center">
+            <div class="center-logo"></div>
+            <div class="center-subtitle"></div>
+        </div>
+    </div>
+</body>
+</html>

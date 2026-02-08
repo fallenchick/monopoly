@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大富翁 - Monopoly</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- 游戏设置界面 -->
+    <div id="setup-screen" class="screen">
+        <div class="setup-container">
+            <h1>🎲 大富翁</h1>
+            <h2>MONOPOLY</h2>
+            
+            <!-- 城市选择 -->
+            <div class="city-select">
+                <h3>选择城市</h3>
+                <div class="city-buttons" id="city-buttons">
+                    <button class="city-btn active" data-city="atlantic">
+                        <span class="city-flag">🇺🇸</span>
+                        <span class="city-name">大西洋城</span>
+                        <span class="city-desc">经典美国版</span>
+                    </button>
+                    <button class="city-btn" data-city="shanghai">
+                        <span class="city-flag">🇨🇳</span>
+                        <span class="city-name">上海</span>
+                        <span class="city-desc">魔都版</span>
+                    </button>
+                    <button class="city-btn" data-city="world">
+                        <span class="city-flag">🌍</span>
+                        <span class="city-name">世界城市</span>
+                        <span class="city-desc">环游世界版</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="player-count">
+                <h3>选择玩家人数</h3>
+                <div class="count-buttons">
+                    <button data-count="2">2人</button>
+                    <button data-count="3" class="active">3人</button>
+                    <button data-count="4">4人</button>
+                </div>
+            </div>
+            
+            <div id="player-setup"></div>
+            
+            <!-- 可选规则 -->
+            <div class="house-rules">
+                <h3>可选规则</h3>
+                <div class="rule-options">
+                    <label class="rule-option">
+                        <input type="checkbox" id="rule-double-go">
+                        <span class="checkmark"></span>
+                        <span class="rule-text">起点双倍：正好落在起点获得 $400</span>
+                    </label>
+                    <label class="rule-option">
+                        <input type="checkbox" id="rule-chinese-building">
+                        <span class="checkmark"></span>
+                        <span class="rule-text">中式盖房：无需集齐整组，落在自己地块即可建房</span>
+                    </label>
+                    <label class="rule-option">
+                        <input type="checkbox" id="rule-buyout">
+                        <span class="checkmark"></span>
+                        <span class="rule-text">强制收购：付双倍价格强买他人地产（酒店除外）</span>
+                    </label>
+                </div>
+            </div>
+            
+            <button id="start-btn" class="btn-primary">开始游戏</button>
+        </div>
+    </div>
+
+    <!-- 游戏主界面 -->
+    <div id="game-screen" class="screen hidden">
+        <div id="game-layout">
+            <!-- 左侧：玩家信息 -->
+            <div id="left-panel">
+                <h3>💰 玩家资产</h3>
+                <div id="players-bar"></div>
+            </div>
+            
+            <!-- 中间：棋盘区域 -->
+            <div id="board-container">
+                <div id="board">
+                    <!-- 动态生成的棋盘 -->
+                    <div id="board-grid"></div>
+                    
+                    <!-- 棋子层 -->
+                    <div id="tokens-layer"></div>
+                    <!-- 房屋标记层 -->
+                    <div id="houses-layer"></div>
+                </div>
+                
+                <!-- 中央信息区 -->
+                <div id="center-info">
+                    <div id="current-turn"></div>
+                    <div id="dice-area">
+                        <div class="die" id="die1"></div>
+                        <div class="die" id="die2"></div>
+                    </div>
+                    <div id="message"></div>
+                </div>
+            </div>
+            
+            <!-- 右侧：租金预览 -->
+            <div id="right-panel">
+                <h3>🎲 租金风险</h3>
+                <div id="rent-preview"></div>
+            </div>
+        </div>
+
+        <!-- 操作按钮区 -->
+        <div id="action-bar">
+            <button id="btn-roll" class="btn-action">🎲 掷骰子</button>
+            <button id="btn-buy" class="btn-action hidden">🏠 购买</button>
+            <button id="btn-build" class="btn-action hidden">🏗️ 建房</button>
+            <button id="btn-trade" class="btn-action">🤝 交易</button>
+            <button id="btn-mortgage" class="btn-action hidden">💰 抵押</button>
+            <button id="btn-end-turn" class="btn-action hidden">➡️ 结束回合</button>
+        </div>
+    </div>
+
+    <!-- 弹窗：购买地产 -->
+    <div id="modal-buy" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="buy-title" style="display:none"></h3>
+            <div id="buy-card-container"></div>
+            <p id="buy-price" style="display:none"></p>
+            <div class="modal-buttons">
+                <button id="buy-confirm" class="btn-primary">购买</button>
+                <button id="buy-cancel" class="btn-secondary">不买</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：抽卡 -->
+    <div id="modal-card" class="modal hidden">
+        <div class="modal-content card-modal">
+            <div id="card-icon"></div>
+            <h3 id="card-type"></h3>
+            <p id="card-text"></p>
+            <button id="card-ok" class="btn-primary">确定</button>
+        </div>
+    </div>
+
+    <!-- 弹窗：建房选择 -->
+    <div id="modal-build" class="modal hidden">
+        <div class="modal-content">
+            <h3>选择要建房的地产</h3>
+            <div id="build-options"></div>
+            <button id="build-close" class="btn-secondary">关闭</button>
+        </div>
+    </div>
+
+    <!-- 弹窗：拍卖 -->
+    <div id="modal-auction" class="modal hidden">
+        <div class="modal-content auction-modal">
+            <h3>🔨 拍卖</h3>
+            <div class="auction-info">
+                <div id="auction-property" class="auction-property-name"></div>
+                <div id="auction-price"></div>
+                <div id="auction-starting"></div>
+                <div id="auction-current-bid" class="auction-current"></div>
+            </div>
+            <div id="auction-players-status" class="auction-players"></div>
+            <div id="auction-bidder" class="auction-turn"></div>
+            <div id="auction-min-bid" class="auction-min"></div>
+            <div class="auction-controls">
+                <input type="number" id="auction-bid-input" step="10">
+                <button id="auction-bid-btn" class="btn-primary">出价</button>
+                <button id="auction-pass-btn" class="btn-secondary">退出</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：收购 -->
+    <div id="modal-buyout" class="modal hidden">
+        <div class="modal-content">
+            <h3>🏦 强制收购</h3>
+            <div class="buyout-info">
+                <div id="buyout-property" class="buyout-property-name"></div>
+                <div id="buyout-houses"></div>
+                <div id="buyout-price" class="buyout-price"></div>
+                <p id="buyout-info"></p>
+            </div>
+            <div class="modal-buttons">
+                <button id="buyout-confirm" class="btn-primary">收购</button>
+                <button id="buyout-cancel" class="btn-secondary">放弃</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：交易 -->
+    <div id="modal-trade" class="modal hidden">
+        <div class="modal-content trade-modal">
+            <h3>🤝 发起交易</h3>
+            <div class="trade-container">
+                <!-- 选择交易对象 -->
+                <div id="trade-select-player" class="trade-step">
+                    <p>选择交易对象：</p>
+                    <div id="trade-players"></div>
+                </div>
+                
+                <!-- 设置交易内容 -->
+                <div id="trade-setup" class="trade-step hidden">
+                    <div class="trade-sides">
+                        <div class="trade-side">
+                            <h4 id="trade-my-name">我方</h4>
+                            <div class="trade-props" id="trade-my-props"></div>
+                            <div class="trade-money">
+                                <label>现金: $</label>
+                                <input type="number" id="trade-my-money" value="0" min="0" step="10">
+                            </div>
+                        </div>
+                        <div class="trade-arrow">⇄</div>
+                        <div class="trade-side">
+                            <h4 id="trade-their-name">对方</h4>
+                            <div class="trade-props" id="trade-their-props"></div>
+                            <div class="trade-money">
+                                <label>现金: $</label>
+                                <input type="number" id="trade-their-money" value="0" min="0" step="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="trade-propose-btn" class="btn-primary">提出交易</button>
+                        <button id="trade-back-btn" class="btn-secondary">返回</button>
+                    </div>
+                </div>
+                
+                <!-- 对方确认 -->
+                <div id="trade-confirm" class="trade-step hidden">
+                    <div id="trade-summary"></div>
+                    <div class="modal-buttons">
+                        <button id="trade-accept-btn" class="btn-primary">同意</button>
+                        <button id="trade-reject-btn" class="btn-secondary">拒绝</button>
+                    </div>
+                </div>
+            </div>
+            <button id="trade-close-btn" class="btn-secondary" style="margin-top:15px;">取消</button>
+        </div>
+    </div>
+
+    <!-- 弹窗：抵押选择 -->
+    <div id="modal-mortgage" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="mortgage-title">选择要抵押的地产</h3>
+            <div id="mortgage-options"></div>
+            <button id="mortgage-close" class="btn-secondary">关闭</button>
+        </div>
+    </div>
+
+    <!-- 弹窗：监狱选项 -->
+    <div id="modal-jail" class="modal hidden">
+        <div class="modal-content">
+            <h3>🔒 你在监狱中</h3>
+            <p id="jail-info"></p>
+            <div class="modal-buttons">
+                <button id="jail-roll" class="btn-primary">掷骰子</button>
+                <button id="jail-pay" class="btn-secondary">交$50出狱</button>
+                <button id="jail-card" class="btn-secondary hidden">使用出狱卡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗：游戏结束 -->
+    <div id="modal-gameover" class="modal hidden">
+        <div class="modal-content gameover">
+            <h2>🏆 游戏结束</h2>
+            <div id="winner-info"></div>
+            <button id="restart-btn" class="btn-primary">重新开始</button>
+        </div>
+    </div>
+
+    <!-- JS 按架构文档顺序加载 -->
+    <script src="js/data/cities.js"></script>
+    <script src="js/data/properties.js"></script>
+    <script src="js/data/chance.js"></script>
+    <script src="js/data/chest.js"></script>
+    <script src="js/Audio.js"></script>
+    <script src="js/Dice.js"></script>
+    <script src="js/Property.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/Board.js"></script>
+    <script src="js/CardDeck.js"></script>
+    <script src="js/UI.js"></script>
+    <script src="js/Game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

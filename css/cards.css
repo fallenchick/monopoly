@@ -1,0 +1,176 @@
+/* cards.css - 卡片样式 */
+
+/* 地产卡预览 */
+.property-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 180px;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.property-card .color-header {
+    height: 30px;
+    margin: -15px -15px 10px -15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.property-card .name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.property-card .price {
+    font-size: 16px;
+    color: #2d5016;
+}
+
+/* 颜色主题 */
+.color-brown { background: #8B4513; }
+.color-lightblue { background: #87CEEB; }
+.color-pink { background: #FF69B4; }
+.color-orange { background: #FFA500; }
+.color-red { background: #FF0000; }
+.color-yellow { background: #FFD700; }
+.color-green { background: #228B22; }
+.color-blue { background: #0000CD; }
+.color-railroad { background: #333; }
+.color-utility { background: #666; }
+
+/* 机会卡/命运卡显示 */
+.chance-card,
+.chest-card {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    color: #1a1a2e;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 350px;
+}
+
+.chance-card .icon,
+.chest-card .icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.chance-card .title,
+.chest-card .title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #b45309;
+    margin-bottom: 15px;
+}
+
+.chance-card .text,
+.chest-card .text {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* 出狱卡标记 */
+.jail-free-badge {
+    background: #22c55e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+/* 地产卡弹窗图片 */
+.property-card-full {
+    max-width: 280px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== 自绘地契卡片 ===== */
+.deed-card {
+    width: 220px;
+    background: #fffef5;
+    border: 3px solid #333;
+    border-radius: 8px;
+    padding: 0;
+    font-family: 'Times New Roman', serif;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.deed-card .deed-header {
+    padding: 12px 10px;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.deed-card .deed-header .deed-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.deed-card .deed-header .deed-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.deed-card .deed-body {
+    padding: 12px 15px;
+    color: #333;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.deed-card .deed-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.deed-card .deed-divider {
+    border-top: 1px solid #999;
+    margin: 8px 0;
+}
+
+.deed-card .deed-section-title {
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.deed-card .deed-footer {
+    text-align: center;
+    padding: 8px;
+    background: #f5f5dc;
+    border-top: 1px solid #ccc;
+    font-size: 10px;
+    color: #666;
+}
+
+/* 铁路/公用事业特殊卡片 */
+.deed-card.railroad .deed-header,
+.deed-card.utility .deed-header {
+    background: #333 !important;
+}
+
+.deed-card .deed-icon {
+    font-size: 40px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* 地契颜色 */
+.deed-card .deed-header.brown { background: #8B4513; }
+.deed-card .deed-header.lightblue { background: #5bc0de; }
+.deed-card .deed-header.pink { background: #d63384; }
+.deed-card .deed-header.orange { background: #fd7e14; }
+.deed-card .deed-header.red { background: #dc3545; }
+.deed-card .deed-header.yellow { background: #ffc107; color: #333; text-shadow: none; }
+.deed-card .deed-header.green { background: #198754; }
+.deed-card .deed-header.blue { background: #0d6efd; }
