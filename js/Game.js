@@ -662,16 +662,35 @@ class Game {
         const player = this.getCurrentPlayer();
 
         if (player.money < 0) {
-            // 尝试自动抵押
+            // 第一步：先卖掉所有房子和酒店
+            while (player.money < 0) {
+                // 找有房子/酒店的地产
+                const withBuildings = player.properties.filter(p => 
+                    p.type === 'STREET' && (p.houses > 0 || p.hasHotel)
+                );
+                if (withBuildings.length === 0) break;
+
+                // 卖掉一栋房子
+                const prop = withBuildings[0];
+                const refund = prop.sellHouse();
+                if (refund > 0) {
+                    player.money += refund;  // 直接加钱，不触发音效
+                    this.ui.showMessage(`${player.name} 卖掉 ${prop.name} 的一栋房屋，获得 $${refund}`);
+                }
+            }
+
+            // 第二步：抵押地皮
             while (player.money < 0) {
                 const mortgageable = player.getMortgageableProperties();
                 if (mortgageable.length === 0) break;
 
                 const prop = mortgageable[0];
                 const value = prop.mortgage();
-                player.addMoney(value);
+                player.money += value;  // 直接加钱，不触发音效
+                this.ui.showMessage(`${player.name} 抵押 ${prop.name}，获得 $${value}`);
             }
 
+            // 第三步：仍然还不起，破产
             if (player.money < 0) {
                 player.declareBankruptcy();
                 this.ui.showMessage(`${player.name} 破产了！`);
