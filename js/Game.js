@@ -21,7 +21,7 @@ class Game {
 
     /**
      * 初始化游戏
-     * @param {Array<{name: string, token: string}>} playerData
+     * @param {Array<{name: string, token: string, isAI: boolean}>} playerData
      * @param {string} cityId - 城市ID
      * @param {object} houseRules - 可选规则
      */
@@ -37,10 +37,14 @@ class Game {
             buyout: houseRules.buyout || false
         };
         
-        // 创建玩家
-        this.players = playerData.map((data, index) => 
-            new Player(index, data.name, data.token)
-        );
+        // 创建玩家（根据 isAI 创建 AIPlayer 或 Player）
+        this.players = playerData.map((data, index) => {
+            if (data.isAI) {
+                return new AIPlayer(index, data.name, data.token);
+            } else {
+                return new Player(index, data.name, data.token);
+            }
+        });
 
         // 初始化组件（传入城市ID给Board）
         this.board = new Board(cityId);
@@ -109,7 +113,7 @@ class Game {
     /**
      * 开始回合
      */
-    startTurn() {
+    async startTurn() {
         const player = this.getCurrentPlayer();
         
         if (player.bankrupt) {
@@ -127,8 +131,24 @@ class Game {
         this.boughtThisTurnPositions = [];    // 本回合购买的地产位置
 
         this.ui.updateCurrentTurn(player);
-        this.ui.showMessage('请掷骰子');
-        this.updateButtons();
+        
+        // 如果是 AI 玩家，自动执行回合
+        if (player.isAI) {
+            this.isAITurn = true;  // 标记 AI 回合
+            this.ui.showMessage(`${player.name} 正在思考...`);
+            this.hideAllButtons();
+            await player.executeTurn(this);
+            this.checkBankruptcy();
+            this.checkGameEnd();
+            this.isAITurn = false;
+            if (!player.bankrupt && this.state !== 'END') {
+                this.endTurn();
+            }
+        } else {
+            this.isAITurn = false;
+            this.ui.showMessage('请掷骰子');
+            this.updateButtons();
+        }
     }
 
     /**
@@ -389,7 +409,13 @@ class Game {
             return;  // 买不起就不显示选项
         }
         
-        const confirm = await this.ui.showBuyoutModal(property, price, buyer, property.owner);
+        let confirm;
+        if (buyer.isAI) {
+            // AI 自动决策收购（规则4：现金 > 1000 时收购）
+            confirm = buyer.decideBuyout(property, price);
+        } else {
+            confirm = await this.ui.showBuyoutModal(property, price, buyer, property.owner);
+        }
         
         if (confirm) {
             const originalOwner = property.owner;
@@ -748,6 +774,12 @@ class Game {
      * 更新按钮状态
      */
     updateButtons() {
+        // AI 回合时始终隐藏所有按钮
+        if (this.isAITurn) {
+            this.hideAllButtons();
+            return;
+        }
+
         const player = this.getCurrentPlayer();
         const canRoll = !this.hasRolled || this.canRollAgain;
         const canBuy = this.pendingAction?.type === 'BUY';
@@ -763,6 +795,7 @@ class Game {
             canRoll: canRoll && !player.inJail,
             canBuy,
             canBuild,
+            canTrade: true,  // 真人玩家回合时可以交易
             canMortgage,
             canEndTurn: canEndTurn || player.inJail
         });
@@ -775,6 +808,20 @@ class Game {
         } else {
             this.ui.btnRoll.textContent = '🎲 掷骰子';
         }
+    }
+
+    /**
+     * 隐藏所有操作按钮（AI 回合时使用）
+     */
+    hideAllButtons() {
+        this.ui.updateActionButtons({
+            canRoll: false,
+            canBuy: false,
+            canBuild: false,
+            canTrade: false,
+            canMortgage: false,
+            canEndTurn: false
+        });
     }
 
     /**

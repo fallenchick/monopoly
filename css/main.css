@@ -239,6 +239,45 @@ body {
     border-radius: 10px;
 }
 
+/* 玩家类型选择框 - 设置界面 */
+#setup-screen .player-type-select {
+    padding: clamp(6px, 1vw, 10px) clamp(8px, 1.5vw, 15px);
+    font-size: clamp(10px, 1.2vw, 13px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    min-width: clamp(70px, 8vw, 100px);
+}
+
+/* 游戏界面通用选择框 */
+#game-screen select {
+    padding: clamp(6px, 1vw, 10px) clamp(8px, 1.5vw, 15px);
+    font-size: clamp(12px, 1.2vw, 15px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+}
+
+.player-type-select:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.player-type-select:focus {
+    border-color: var(--color-accent);
+}
+
+.player-type-select option {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px;
+}
+
 .player-row input {
     padding: 10px 15px;
     font-size: 16px;
@@ -250,8 +289,9 @@ body {
 }
 
 .token-choices {
-    display: flex;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
 }
 
 .token-choice {

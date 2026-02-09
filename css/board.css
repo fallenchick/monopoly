@@ -11,8 +11,8 @@
 
 #board {
     position: relative;
-    width: min(75vh, 75vw);
-    height: min(75vh, 75vw);
+    width: min(82.5vh, 82.5vw);
+    height: min(82.5vh, 82.5vw);
 }
 
 /* ===== 自绘棋盘 ===== */

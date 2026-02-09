@@ -43,10 +43,15 @@ class UI {
         container.innerHTML = '';
 
         for (let i = 0; i < count; i++) {
+            const isAI = i > 0;  // 默认只有第一个是人类
             const row = document.createElement('div');
             row.className = 'player-row';
             row.innerHTML = `
-                <input type="text" value="玩家 ${i + 1}" data-player="${i}">
+                <select class="player-type-select" data-player="${i}">
+                    <option value="human" ${!isAI ? 'selected' : ''}>👤 真人</option>
+                    <option value="ai" ${isAI ? 'selected' : ''}>🤖 电脑</option>
+                </select>
+                <input type="text" value="${isAI ? '电脑 ' + (i + 1) : '玩家 1'}" data-player="${i}">
                 <div class="token-choices" data-player="${i}">
                     ${TOKENS.map((t, idx) => `
                         <div class="token-choice ${i === idx ? 'selected' : ''}" data-token="${t.id}">
@@ -56,6 +61,14 @@ class UI {
                 </div>
             `;
             container.appendChild(row);
+            
+            // 类型选择变化事件
+            const select = row.querySelector('.player-type-select');
+            select.onchange = () => {
+                const input = row.querySelector('input');
+                const playerNum = parseInt(select.dataset.player) + 1;
+                input.value = select.value === 'ai' ? `电脑 ${playerNum}` : `玩家 ${playerNum}`;
+            };
         }
 
         this.updateTokenAvailability();
@@ -79,14 +92,16 @@ class UI {
 
     /**
      * 获取玩家设置数据
-     * @returns {Array<{name: string, token: string}>}
+     * @returns {Array<{name: string, token: string, isAI: boolean}>}
      */
     getPlayerSetupData() {
         const players = [];
         document.querySelectorAll('.player-row').forEach((row, index) => {
             const name = row.querySelector('input').value || `玩家 ${index + 1}`;
             const token = row.querySelector('.token-choice.selected')?.dataset.token || TOKENS[index].id;
-            players.push({ name, token });
+            const select = row.querySelector('.player-type-select');
+            const isAI = select ? select.value === 'ai' : false;
+            players.push({ name, token, isAI });
         });
         return players;
     }
@@ -120,7 +135,7 @@ class UI {
                     <div class="token-icon">
                         <img src="${player.getTokenImagePath()}" alt="">
                     </div>
-                    <span class="name">${player.name}</span>
+                    <span class="name">${player.isAI ? '🤖 ' : ''}${player.name}</span>
                     ${player.inJail ? '<span class="jail-badge">🔒 监狱</span>' : ''}
                     ${player.getOutOfJailCards > 0 ? '<span class="jail-free-badge">🎫</span>' : ''}
                 </div>
@@ -307,6 +322,7 @@ class UI {
         this.btnRoll.classList.toggle('hidden', !state.canRoll);
         this.btnBuy.classList.toggle('hidden', !state.canBuy);
         this.btnBuild.classList.toggle('hidden', !state.canBuild);
+        this.btnTrade.classList.toggle('hidden', !state.canTrade);
         this.btnMortgage.classList.toggle('hidden', !state.canMortgage);
         this.btnEndTurn.classList.toggle('hidden', !state.canEndTurn);
 
@@ -944,6 +960,58 @@ class UI {
             
             modal.classList.remove('hidden');
             updateAuctionUI();
+        });
+    }
+
+    /**
+     * 显示 AI 交易提案弹窗（给人类玩家确认）
+     * @param {object} offer
+     * @returns {Promise<{accepted: boolean}>}
+     */
+    showTradeOfferModal(offer) {
+        return new Promise(resolve => {
+            const modal = document.getElementById('modal-trade');
+            const stepSelectPlayer = document.getElementById('trade-select-player');
+            const stepSetup = document.getElementById('trade-setup');
+            const stepConfirm = document.getElementById('trade-confirm');
+            
+            stepSelectPlayer.classList.add('hidden');
+            stepSetup.classList.add('hidden');
+            stepConfirm.classList.remove('hidden');
+            
+            const summaryDiv = document.getElementById('trade-summary');
+            summaryDiv.innerHTML = `
+                <p><strong>${offer.to.name}</strong>，${offer.from.name} 向你发起交易：</p>
+                <div class="trade-summary-content">
+                    <div class="trade-summary-side">
+                        <strong>${offer.from.name} 给出：</strong>
+                        ${offer.fromProps.map(p => `<div>• ${p.name}</div>`).join('') || ''}
+                        ${offer.fromMoney > 0 ? `<div>• $${offer.fromMoney}</div>` : ''}
+                        ${offer.fromProps.length === 0 && !offer.fromMoney ? '<div style="color:#888">（无）</div>' : ''}
+                    </div>
+                    <div class="trade-summary-side">
+                        <strong>${offer.to.name} 给出：</strong>
+                        ${offer.toProps.map(p => `<div>• ${p.name}</div>`).join('') || ''}
+                        ${offer.toMoney > 0 ? `<div>• $${offer.toMoney}</div>` : ''}
+                        ${offer.toProps.length === 0 && !offer.toMoney ? '<div style="color:#888">（无）</div>' : ''}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('trade-accept-btn').onclick = () => {
+                modal.classList.add('hidden');
+                resolve({ accepted: true });
+            };
+            document.getElementById('trade-reject-btn').onclick = () => {
+                modal.classList.add('hidden');
+                resolve({ accepted: false });
+            };
+            document.getElementById('trade-close-btn').onclick = () => {
+                modal.classList.add('hidden');
+                resolve({ accepted: false });
+            };
+            
+            modal.classList.remove('hidden');
         });
     }
 
