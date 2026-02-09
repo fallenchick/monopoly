@@ -799,7 +799,34 @@ class UI {
                     return;
                 }
                 
-                // 显示确认页面
+                // 如果对方是 AI，让 AI 自动决定
+                if (targetPlayer.isAI) {
+                    modal.classList.add('hidden');
+                    
+                    // 构建交易提案供 AI 评估
+                    const offer = {
+                        fromProps: theirProps,  // AI 要付出的
+                        toProps: myProps,       // AI 要获得的
+                        fromMoney: theirMoney,
+                        toMoney: myMoney,
+                        to: currentPlayer
+                    };
+                    
+                    const accepted = targetPlayer.evaluateTradeOffer(offer);
+                    
+                    resolve({
+                        accepted,
+                        from: currentPlayer,
+                        to: targetPlayer,
+                        fromProps: myProps,
+                        toProps: theirProps,
+                        fromMoney: myMoney,
+                        toMoney: theirMoney
+                    });
+                    return;
+                }
+                
+                // 对方是人类，显示确认页面
                 stepSetup.classList.add('hidden');
                 stepConfirm.classList.remove('hidden');
                 

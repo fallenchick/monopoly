@@ -214,8 +214,10 @@ class AIPlayer extends Player {
 
     /**
      * 评估并决定是否接受交易提案
+     * @param {object} offer - 交易提案
+     * @param {boolean} isAIInitiated - 是否是 AI 主动发起的交易（默认 false = 被动接受）
      */
-    evaluateTradeOffer(offer) {
+    evaluateTradeOffer(offer, isAIInitiated = false) {
         // 计算我方获得的价值
         let gainValue = offer.toMoney || 0;
         for (const prop of (offer.toProps || [])) {
@@ -233,8 +235,11 @@ class AIPlayer extends Player {
             loseValue += this.evaluatePropertyValue(prop, offer.to);
         }
         
-        // 允许小亏（≤ 10%）
-        if (gainValue >= loseValue * 0.9) {
+        // AI 主动发起：允许小亏（≤ 10%）
+        // 被动接受（玩家向 AI 提出）：必须不亏（获得 >= 付出）
+        const threshold = isAIInitiated ? loseValue * 0.9 : loseValue;
+        
+        if (gainValue >= threshold) {
             console.log(`[AI] ${this.name}: 接受交易（获得 $${gainValue} vs 付出 $${loseValue}）`);
             return true;
         }
