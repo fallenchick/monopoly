@@ -899,7 +899,6 @@ class UI {
             let currentBidderIndex = 0;
             
             const updateAuctionUI = () => {
-                const activeCount = inAuction.filter(p => p.active).length;
                 const currentBidder = inAuction[currentBidderIndex];
                 
                 document.getElementById('auction-property').textContent = property.name;
@@ -934,6 +933,31 @@ class UI {
                 }).join('');
             };
             
+            const processCurrentBidder = async () => {
+                const currentBidder = inAuction[currentBidderIndex];
+                const minBid = currentBid > 0 ? currentBid + 10 : startingBid;
+                
+                // 如果是 AI，自动决定
+                if (currentBidder.player.isAI) {
+                    await new Promise(r => setTimeout(r, 500));  // 短暂延迟
+                    
+                    const aiBid = currentBidder.player.decideAuctionBid(property, currentBid > 0 ? currentBid : startingBid - 10);
+                    
+                    if (aiBid > currentBid && aiBid <= currentBidder.player.money) {
+                        currentBid = aiBid;
+                        currentWinner = currentBidder.player;
+                        audio.play('confirm');
+                        updateAuctionUI();
+                    } else {
+                        // AI 放弃
+                        inAuction[currentBidderIndex].active = false;
+                    }
+                    
+                    nextBidder();
+                }
+                // 如果是人类，等待点击按钮
+            };
+            
             const nextBidder = () => {
                 // 找下一个还在竞拍的玩家
                 let tries = 0;
@@ -947,6 +971,8 @@ class UI {
                 if (activeCount <= 1) {
                     modal.classList.add('hidden');
                     if (activeCount === 1 && currentBid > 0) {
+                        resolve({ winner: currentWinner, bid: currentBid });
+                    } else if (currentBid > 0 && currentWinner) {
                         resolve({ winner: currentWinner, bid: currentBid });
                     } else {
                         resolve(null);  // 无人竞拍
@@ -962,9 +988,10 @@ class UI {
                 }
                 
                 updateAuctionUI();
+                processCurrentBidder();
             };
             
-            // 出价按钮
+            // 出价按钮（人类玩家用）
             document.getElementById('auction-bid-btn').onclick = () => {
                 const bidInput = document.getElementById('auction-bid-input');
                 const bid = parseInt(bidInput.value);
@@ -979,7 +1006,7 @@ class UI {
                 }
             };
             
-            // 退出按钮
+            // 退出按钮（人类玩家用）
             document.getElementById('auction-pass-btn').onclick = () => {
                 inAuction[currentBidderIndex].active = false;
                 nextBidder();
@@ -987,6 +1014,7 @@ class UI {
             
             modal.classList.remove('hidden');
             updateAuctionUI();
+            processCurrentBidder();
         });
     }
 
