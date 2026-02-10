@@ -323,7 +323,13 @@ class Game {
                 player.goToJail();
                 this.ui.showMessage('入狱！');
                 this.canRollAgain = false;
-                break;
+                // 入狱立即结束回合，不能再掷
+                this.hasRolled = true;
+                this.render();
+                this.updateButtons();
+                // 延迟后自动结束回合
+                setTimeout(() => this.nextPlayer(), 1500);
+                return;  // 提前返回，不执行后面的 updateButtons
             case 'GO':
             case 'JAIL':
             case 'FREE_PARKING':
